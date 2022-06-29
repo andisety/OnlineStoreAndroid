@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="10dp">
+        android:paddingBottom="5dp"
+        android:background="@color/teal_200">
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/search"
-                android:background="@color/teal_200"
                 app:cardCornerRadius="17dp"
                 android:layout_margin="10dp"
                 android:layout_width="0dp"
@@ -25,7 +24,7 @@
                 app:layout_constraintEnd_toStartOf="@id/chat">
                 <EditText
                     android:paddingLeft="10dp"
-                    android:background="null"
+                    android:background="@null"
                     android:drawableStart="@drawable/ic_search"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"/>
@@ -46,7 +45,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_slider"
         android:layout_width="match_parent"
-        android:layout_height="170dp"/>
+        android:layout_height="190dp"/>
 
 
 

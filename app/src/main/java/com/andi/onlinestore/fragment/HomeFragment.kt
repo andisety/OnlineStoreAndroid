@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.andi.onlinestore.R
+import com.andi.onlinestore.adapter.AdapterSlider
 
 class HomeFragment : Fragment() {
 
@@ -20,6 +21,11 @@ class HomeFragment : Fragment() {
         vpSlider=view.findViewById(R.id.vp_slider)
 
         val arrSlider = ArrayList<Int>()
+        arrSlider.add(R.drawable.s1)
+        arrSlider.add(R.drawable.s2)
+        arrSlider.add(R.drawable.s3)
+        val adapterSlider = AdapterSlider(arrSlider,activity)
+        vpSlider.adapter=adapterSlider
         return view
     }
 
