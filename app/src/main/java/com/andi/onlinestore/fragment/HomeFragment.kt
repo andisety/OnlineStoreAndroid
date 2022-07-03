@@ -17,6 +17,7 @@ class HomeFragment : Fragment() {
 
     lateinit var vpSlider:ViewPager
     lateinit var rvProduk:RecyclerView
+    lateinit var rvProdukLaris:RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,12 +26,20 @@ class HomeFragment : Fragment() {
         val view:View=inflater.inflate(R.layout.fragment_home, container, false)
         vpSlider=view.findViewById(R.id.vp_slider)
         rvProduk=view.findViewById(R.id.rv_produk)
+        rvProdukLaris=view.findViewById(R.id.rv_produk_terlaris)
 
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation=LinearLayoutManager.HORIZONTAL
-
+        //produk baru
         rvProduk.adapter=AdapterProduk(arrProduk)
         rvProduk.layoutManager = layoutManager
+
+        val layoutManager2 = LinearLayoutManager(activity)
+        layoutManager2.orientation=LinearLayoutManager.HORIZONTAL
+        //produk laris
+        rvProdukLaris.adapter=AdapterProduk(arrProduk)
+        rvProdukLaris.layoutManager = layoutManager2
+
 
 
         val arrSlider = ArrayList<Int>()

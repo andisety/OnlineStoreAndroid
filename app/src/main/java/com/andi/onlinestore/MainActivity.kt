@@ -1,14 +1,17 @@
 package com.andi.onlinestore
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.andi.onlinestore.activity.LoginActivity
 import com.andi.onlinestore.fragment.AkunFragment
 import com.andi.onlinestore.fragment.HomeFragment
 import com.andi.onlinestore.fragment.KeranjangFragment
+import com.andi.onlinestore.helper.SharePref
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -23,10 +26,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuItem:MenuItem
     private lateinit var bottomNavigationView: BottomNavigationView
 
+    private lateinit var s:SharePref
+
+    private  var login=false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        s= SharePref(this)
         setUpBottomNav()
 
     }
@@ -38,8 +45,15 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.nav_view)
         menu = bottomNavigationView.menu
-        menuItem = menu.getItem(0)
-        menuItem.isChecked=true
+
+        login=intent.getBooleanExtra("login",false)
+
+        if (!login){
+            callFragment(0,homeFragment)
+        }else{
+            callFragment(2,akunFragment)
+        }
+
 
         bottomNavigationView.setOnItemSelectedListener { item->
             when(item.itemId){
@@ -53,7 +67,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_akun->{
                     Log.e("bottomNav","akun")
-                    callFragment(2,akunFragment)
+                    if (s.getStatusLogin()){
+                        callFragment(2,akunFragment)
+                    }else{
+                        startActivity(Intent(this,LoginActivity::class.java))
+                    }
+
                 }
             }
 

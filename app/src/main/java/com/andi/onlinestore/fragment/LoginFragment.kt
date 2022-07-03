@@ -9,28 +9,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.andi.onlinestore.MainActivity
 import com.andi.onlinestore.R
-import com.andi.onlinestore.activity.LoginActivity
 import com.andi.onlinestore.helper.SharePref
 
-class AkunFragment : Fragment() {
-    lateinit var s:SharePref
-   private lateinit var btnLogout:Button
+class LoginFragment : Fragment() {
+    private lateinit var s:SharePref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View=inflater.inflate(R.layout.fragment_akun, container, false)
-        btnLogout=view.findViewById(R.id.btn_logout)
+        val view:View=inflater.inflate(R.layout.fragment_login, container, false)
+        val btnLogin = view.findViewById<Button>(R.id.btnlogin)
         s= SharePref(requireActivity())
 
-        btnLogout.setOnClickListener{
-            s.setStatusLogin(false)
-            startActivity(Intent(activity,LoginActivity::class.java))
-
+        btnLogin.setOnClickListener {
+            s.setStatusLogin(true)
+            startActivity(Intent(requireContext(),MainActivity::class.java))
         }
-
         return view
     }
 
